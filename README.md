@@ -9,7 +9,6 @@ Run `release.ps1`. This will output the following files which should all be uplo
 
 `release/taserver_setup.ps1`
 
-`release/azuredeploy.zip`
 
 
 ## Dependencies

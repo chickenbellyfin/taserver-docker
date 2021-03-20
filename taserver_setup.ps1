@@ -19,7 +19,7 @@ tar -xvf taserver.zip -C $INSTALL_DIR\taserver --strip-components=1
 
 tar -xvf Tribes.zip -C $INSTALL_DIR
 tar -xvf dependencies.zip -C $INSTALL_DIR
-tar -xvf taserver_deploy.zip -C $INSTALL_DIR
+tar -xvf taserver-deploy.zip -C $INSTALL_DIR
 
 # Install .NET 3.5
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All 
@@ -33,15 +33,19 @@ Start-Process dependencies\vc_redist.x86.exe "/install","/passive","/norestart" 
 # udpproxy dependency
 Start-Process dependencies\vc_redist.x64.exe "/install","/passive","/norestart" -Wait
 
+# taserver - download tamods dll & udpproxy
+.\dependencies\python\python.exe .\taserver\download_compatible_controller.py
+.\dependencies\python\python.exe .\taserver\download_udpproxy.py
+
 # copy launcher config
 Copy-Item "config\gameserverlauncher.ini" -Destination "taserver\data\gameserverlauncher.ini"
 
 # create ta server game config
-.\resources\python\python.exe scripts\prepare_serverconfig.py generate $serverconfig_settings
+.\dependencies\python\python.exe scripts\prepare_serverconfig.py generate $serverconfig_settings
 Copy-Item "serverconfig.lua" -Destination "taserver\data\gamesettings\ootb\serverconfig.lua"
 
 # Install taserver as a windows service and start it
-cd C:\taserver_package\resources
+cd $INSTALL_DIR\dependencies
 .\nssm.exe install taserver powershell.exe
 .\nssm.exe set taserver AppDirectory $INSTALL_DIR
 .\nssm.exe set taserver AppParameters $INSTALL_DIR\scripts\taserver_run.ps1

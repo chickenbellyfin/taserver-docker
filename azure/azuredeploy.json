@@ -27,7 +27,8 @@
                 "CTF",
                 "TDM",
                 "Rabbit",
-                "HonorArena"
+                "HonorArena",
+                "MixerCTF"
             ]
         },
         "tribesServerName": {
