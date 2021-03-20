@@ -1,4 +1,5 @@
-$serverconfig_settings = $args[0]
+$branch = $args[0]
+$serverconfig_settings = $args[1]
 
 $INSTALL_DIR = "C:\taserver_deploy"
 
@@ -8,18 +9,20 @@ New-Item -path $INSTALL_DIR -type directory -force
 # Assumes the follwing files are already in the current dir
 # Tribes.zip
 # dependencies.zip
-# taserver-deploy.zip
 
 # Download the latest release of Griffon26/taserver
-curl "https://api.github.com/repos/Griffon26/taserver/releases/latest" |
-    ForEach-Object { ConvertFrom-Json $_.Content } | 
-    ForEach-Object { curl -o taserver.zip $_.zipball_url }
+$taserver_json = curl.exe "https://api.github.com/repos/chickenbellyfin/taserver/releases/latest"
+$taserver_latest =  ConvertFrom-Json "$taserver_json"
+$taserver_zip = $taserver_latest.zipball_url
+curl.exe -L -o taserver.zip $taserver_zip
 New-Item -path $INSTALL_DIR\taserver -type directory -force
-tar -xvf taserver.zip -C $INSTALL_DIR\taserver --strip-components=1
 
+curl.exe -L -o taserver-deploy.zip "https://github.com/chickenbellyfin/taserver-deploy/archive/refs/heads/$branch.zip"
+
+tar -xvf taserver.zip -C $INSTALL_DIR\taserver --strip-components=1
 tar -xvf Tribes.zip -C $INSTALL_DIR
 tar -xvf dependencies.zip -C $INSTALL_DIR
-tar -xvf taserver-deploy.zip -C $INSTALL_DIR
+tar -xvf taserver-deploy.zip -C $INSTALL_DIR --strip-components=1
 
 # Install .NET 3.5
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All 

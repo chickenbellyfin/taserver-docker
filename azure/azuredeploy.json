@@ -71,7 +71,8 @@
             "tribesServerName": "[parameters('tribesServerName')]",
             "tribesServerAdminPassword": "[parameters('tribesServerAdminPassword')]",
             "tribesServerPassword": "[parameters('tribesServerPassword')]"
-        }
+        },
+        "taserverDeployBranch": "master"
     },
     "resources": [
         {
@@ -246,14 +247,13 @@
                 "typeHandlerVersion": "1.9",
                 "settings": {
                     "fileUris": [
-                        "https://github.com/chickenbellyfin/taserver-deploy/releases/latest/download/taserver_setup.ps1",
-                        "https://github.com/chickenbellyfin/taserver-deploy/releases/latest/download/taserver-deploy.zip",
+                        "[concat('https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/', variables('taserverDeployBranch'), '/taserver_setup.ps1')]",
                         "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/dependencies.zip",
                         "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/Tribes.zip"
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File taserver_setup.ps1 C:\\AzureData\\CustomData.bin"
+                    "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File taserver_setup.ps1 ', variables('taserverDeployBranch'), ' C:\\AzureData\\CustomData.bin')]"
                 }
             }
         },
