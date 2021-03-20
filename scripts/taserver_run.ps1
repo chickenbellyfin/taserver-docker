@@ -1,4 +1,4 @@
-$PYTHON = "resources\python\pythonw.exe"
+$PYTHON = "dependencies\python\pythonw.exe"
 $TASERVER = "taserver"
 $LOGS = "C:\logs"
 
@@ -9,6 +9,7 @@ $firewall = Start-Process $PYTHON `
     -RedirectStandardError $LOGS\taserver_firewall.err.log `
     -PassThru
 
+# Wait for firewall to come up
 Start-Sleep -Seconds 5
 
 $taserver = Start-Process $PYTHON `
@@ -19,4 +20,3 @@ $taserver = Start-Process $PYTHON `
     -PassThru
 
 Wait-Process $taserver.id
-
