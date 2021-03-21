@@ -29,7 +29,7 @@ ServerSettings.MutuallyExclusiveItems.add("Light", "SAP20", "Light", "Light Util
 -- Some other settings you might need, just uncomment those lines
 -- If you need more settings, check the documentation at : https://www.tamods.org/docs/doc_srv_api_serverconfig.html
 
-ServerSettings.WarmupTime = 600
+ServerSettings.WarmupTime = 20
 ServerSettings.FriendlyFire = true
 ServerSettings.CTFCapLimit = 7
 -- ServerSettings.BannedItems.add("Light", "BXT1")
