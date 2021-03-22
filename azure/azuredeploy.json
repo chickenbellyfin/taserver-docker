@@ -155,7 +155,10 @@
             "name": "[variables('publicIpAddressName')]",
             "location": "[resourceGroup().location]",
             "properties": {
-              "publicIPAllocationMethod": "Static"
+              "publicIPAllocationMethod": "Dynamic",
+              "dnsSettings": {
+                   "domainNameLabel": "[concat(parameters('windowsServerName'), '-', take(uniqueString(resourceGroup().id, deployment().name), 5))]"
+              }
             }
         },
         {
