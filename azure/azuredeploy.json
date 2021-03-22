@@ -259,9 +259,7 @@
                 "typeHandlerVersion": "1.9",
                 "settings": {
                     "fileUris": [
-                        "[concat('https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/', variables('taserverDeployBranch'), '/taserver_setup.ps1')]",
-                        "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/aws/dependencies.tar",
-                        "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/aws/Tribes.tar"
+                        "[concat('https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/', variables('taserverDeployBranch'), '/taserver_setup.ps1')]"
                     ]
                 },
                 "protectedSettings": {
