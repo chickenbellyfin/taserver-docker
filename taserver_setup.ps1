@@ -26,17 +26,17 @@ log "Fetching taserver-deploy from branch $branch"
 curl.exe -L -o taserver-deploy.zip "https://github.com/chickenbellyfin/taserver-deploy/archive/refs/heads/$branch.zip"
 
 log "Extracting Tribes.zip"
-tar -xf Tribes.zip -C $install_dir
+tar -xf Tribes.tar -C $install_dir
 
 log "Extracting dependencies.zip"
-tar -xf dependencies.zip -C $install_dir
+tar -xf dependencies.tar -C $install_dir
 
 log "Extracting taserver-deploy.zip"
 tar -xf taserver-deploy.zip -C $install_dir --strip-components=1
 
 # Install .NET 3.5
 log "Installing .NET 3.5"
-DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /Quiet
+DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Quiet /Source:$install_dir\dependencies\sxs
 
 cd $install_dir
 
