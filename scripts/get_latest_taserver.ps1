@@ -9,6 +9,11 @@ $latest =  ConvertFrom-Json "$json"
 $tag_name = $latest.tag_name
 $zip_url = $latest.zipball_url
 
+if ($tag_name -eq "") {
+    Write-Output "Failed to get tag name. Exiting."
+    exit
+}
+
 # get previously stored taserver version
 $current_tag_name = Get-Content -Path taserver_version.txt
 

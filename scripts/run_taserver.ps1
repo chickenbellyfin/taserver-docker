@@ -6,7 +6,7 @@ scripts\get_latest_taserver.ps1 . $python
 & $python taserver\download_compatible_controller.py
 
 $firewall = Start-Process $python `
-    -ArgumentList "start_taserver_firewall.py","--data_root=$data_root" `
+    -ArgumentList "start_taserver_firewall.py --data-root=$data_root" `
     -WorkingDirectory taserver `
     -PassThru
 
@@ -14,7 +14,7 @@ $firewall = Start-Process $python `
 Start-Sleep -Seconds 5
 
 $taserver = Start-Process $python `
-    -ArgumentList "start_game_server_launcher.py","--data_root=$data_root" `
+    -ArgumentList "start_game_server_launcher.py --data-root=$data_root" `
     -WorkingDirectory taserver `
     -PassThru
 

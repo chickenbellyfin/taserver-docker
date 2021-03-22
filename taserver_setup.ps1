@@ -51,6 +51,9 @@ cd $install_dir\dependencies
 .\nssm.exe set taserver AppDirectory $install_dir
 .\nssm.exe set taserver AppParameters $install_dir\scripts\run_taserver.ps1
 .\nssm.exe set taserver DisplayName "TAServer"
+.\nssm.exe set taserver AppThrottle 30000
+.\nssm.exe set taserver AppExit Default Restart
+.\nssm.exe set taserver AppRestartDelay 30000
 .\nssm.exe set taserver Start SERVICE_AUTO_START
 
 # skip this since we are rebooting
