@@ -22,7 +22,7 @@ if ($current_tag_name -ne $tag_name) {
 
     curl.exe -L -o taserver.zip $zip_url
     New-Item -path $install_dir\taserver -type directory -force
-    tar -xvf taserver.zip -C $install_dir\taserver --strip-components=1
+    tar -xf taserver.zip -C $install_dir\taserver --strip-components=1
     
     # save new version
     Write-Output "$tag_name" | Out-File -FilePath taserver_version.txt
