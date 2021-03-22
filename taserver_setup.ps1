@@ -1,6 +1,6 @@
 param (
     [string] $branch = "master",
-    [string] $serverconfig_template
+    [string] $serverconfig_params
 )
 
 function log {
@@ -63,10 +63,10 @@ Copy-Item ".\taserver\data" -Destination $data_root -Recurse
 Copy-Item "config\gameserverlauncher.ini" -Destination "$data_root\gameserverlauncher.ini"
 
 log "serverconfig template is \"$serverconfig_template\""
-if ($serverconfig_template -ne "") {
+if ($serverconfig_params -ne "") {
     # create ta server game config
-    log "Preparing template \"$serverconfig_template\""
-    .\dependencies\python\python.exe scripts\prepare_serverconfig.py generate $serverconfig_template
+    log "Preparing template using params in \"$serverconfig_params\""
+    .\dependencies\python\python.exe scripts\prepare_serverconfig.py generate $serverconfig_params
     Copy-Item "serverconfig.lua" -Destination "$data_root\gamesettings\ootb\serverconfig.lua"
 }
 
