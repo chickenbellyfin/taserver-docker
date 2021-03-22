@@ -10,10 +10,10 @@ taserver will start automatically when your VM boots up. If the server crashes, 
 
 You can also restart the VM to attempt to recover a crashed server.
 
-Server logs are located in `C:\taserver_deploy\taserver\data\logs`
+Server logs are located in `C:\taserver_data\logs`
 
 ### Changing Server Settings
-The taserver directory will be located at `C:\taserver_deploy\taserver`, and you can edit game settings in `C:\taserver_deploy\taserver\data\gamesettings\ootb\serverconfig.lua`.
+The taserver directory will be located at `C:\taserver_deploy\taserver`, and you can edit game settings in `C:\taserver_data\gamesettings\ootb\serverconfig.lua`.
 
 Refer to [taserver](https://github.com/Griffon26/taserver) and [TAMods-Server Docs](https://www.tamods.org/docs/doc_srv_api_overview.html) for details on configuration.
 
