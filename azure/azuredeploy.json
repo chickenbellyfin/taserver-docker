@@ -58,7 +58,19 @@
             "metadata": {
               "description": "If you don't know, use the default."
             }
+        },
+        "spotInstance": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Significantly lowers cost, but server will have a small chance of being shut down if there is not enough spare capacity."
+            }
+        },
+        "enableAcceleratedNetworking": {
+            "type": "bool",
+            "defaultValue": true
         }
+
     },
     "variables": {
         "virtualMachineName": "[concat(parameters('windowsServerName'), '-vm')]",
@@ -178,6 +190,8 @@
                 "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
             ],
             "properties": {
+                "priority": "[if(parameters('spotInstance'), 'Spot', 'Regular')]",
+                "evictionPolicy":"Deallocate",
                 "hardwareProfile": {
                     "vmSize": "[parameters('virtualMachineSize')]"
                 },
@@ -192,10 +206,6 @@
                         "osType": "Windows",
                         "name": "[concat(variables('virtualMachineName'), '-osdisk')]",
                         "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Premium_LRS"
-                        },
                         "diskSizeGB": 127
                     }
                 },
@@ -205,7 +215,6 @@
                     "adminPassword": "[parameters('windowsPassword')]",
                     "customData": "[base64(string(variables('customData')))]",
                     "windowsConfiguration": {
-                        "provisionVMAgent": true,
                         "enableAutomaticUpdates": false
                     },
                     "allowExtensionOperations": true
@@ -281,7 +290,7 @@
                         }
                     }
                 ],
-                "enableAcceleratedNetworking": true,
+                "enableAcceleratedNetworking": "[parameters('enableAcceleratedNetworking')]",
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
