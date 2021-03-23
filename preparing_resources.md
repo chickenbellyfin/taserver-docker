@@ -42,6 +42,9 @@ Download the x86 and x64 versions of vc_redist from [microsoft](https://www.micr
 
 Place them in `dependencies/vc_redist.x86.exe` and `dependencies/vc_redist.x64.exe`
 
+### .NET 3.5 
+You will need an ISO for Windows Server 2019. Mount it and copy the `sources/sxs/` directory to `dependencies/sxs/`
+
 ## Tribes Ascend
 The Tribes Ascend game files also happen to include the server, which makes self-hosting possible.
 

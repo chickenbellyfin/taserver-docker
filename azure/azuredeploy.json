@@ -84,7 +84,7 @@
             "tribesServerAdminPassword": "[parameters('tribesServerAdminPassword')]",
             "tribesServerPassword": "[parameters('tribesServerPassword')]"
         },
-        "taserverDeployBranch": "aws"
+        "taserverDeployBranch": "master"
     },
     "resources": [
         {

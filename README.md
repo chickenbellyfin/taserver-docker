@@ -1,7 +1,24 @@
 # taserver-deploy
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
+### Deploy To Azure
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fazure%2Fazuredeploy.json)
+
+### Deploy to AWS
+AWS Template is WIP
+
+For now, you can still deploy AWS by creating your own EC2 instance, and running taserver_setup.ps1 in powershell:
+```
+> curl.exe -o taserver_setup.ps1 https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/master/taserver_setup.ps1
+>  .\taserver_setup.ps1
+```
+
+You will also need to open the following ports in your security group:
+- TCP 7777-7778
+- UDP 7777-7778
+- TCP 9002
+
+Refer to [taserver](https://github.com/Griffon26/taserver) documentation for further details.
 
 ## Managing a running taserver
 
