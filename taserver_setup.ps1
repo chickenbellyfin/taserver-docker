@@ -18,10 +18,10 @@ $data_root = "C:\taserver_data"
 New-Item -path $install_dir -type directory -force
 
 log "Fetching Tribes.zip"
-curl.exe -s -o Tribes.zip "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/Tribes.zip"
+curl.exe -s -o Tribes.zip "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.zip"
 
 log "Fetching dependencies.zip"
-curl.exe -s -o dependencies.zip "https://communal-rebuff-rooftree.s3.us-east-2.amazonaws.com/dependencies.zip"
+curl.exe -s -o dependencies.zip "https://f000.backblazeb2.com/file/taserver-deploy-packages/dependencies.zip"
 
 log "Fetching taserver-deploy from branch $branch"
 curl.exe -s -L -o taserver-deploy.zip "https://github.com/chickenbellyfin/taserver-deploy/archive/refs/heads/$branch.zip"

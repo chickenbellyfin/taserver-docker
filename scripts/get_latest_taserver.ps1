@@ -4,7 +4,7 @@ param (
 )
 
 # Download the latest release of Griffon26/taserver
-$json = curl.exe -s "https://api.github.com/repos/chickenbellyfin/taserver/releases/latest"
+$json = curl.exe -s "https://api.github.com/repos/Griffon26/taserver/releases/latest"
 $latest =  ConvertFrom-Json "$json"
 $tag_name = $latest.tag_name
 $zip_url = $latest.zipball_url
