@@ -1,4 +1,4 @@
-sc stop taserver
+sc.exe stop taserver
 Start-Sleep 5
-sc start taserver
+sc.exe start taserver
 Start-Sleep 5
