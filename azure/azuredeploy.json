@@ -194,7 +194,7 @@
             ],
             "properties": {
                 "priority": "[if(parameters('spotInstance'), 'Spot', 'Regular')]",
-                "evictionPolicy":"Deallocate",
+                "evictionPolicy": "[if(parameters('spotInstance'), 'Deallocate', json('null'))]",
                 "hardwareProfile": {
                     "vmSize": "[parameters('virtualMachineSize')]"
                 },
