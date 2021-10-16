@@ -7,7 +7,7 @@ pkill Xvfb || true
 wineserver -k || true # Kill TribesAscend.exe
 
 # TribesAscend.exe won't start without a display
-nohup Xvfb :1 &> xvfb.out &
+Xvfb :1 &> xvfb.out &
 export DISPLAY=":1"
 
 # redirect external port to Tribes's internal TCP port
@@ -29,4 +29,4 @@ if ! sudo iptables -L  -t nat | grep "7778 redir";
 fi
 
 # Start taserver
-nohup python3 start_game_server_launcher.py &
+python3 start_game_server_launcher.py

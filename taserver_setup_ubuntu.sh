@@ -48,5 +48,11 @@ python3 download_injector.py
 
 # configure gameserverlauncher
 cp ../taserver-deploy/config/gameserverlauncher_ubuntu.ini data/gameserverlauncher.ini
-sed -i "s@PATH_TO_TA@${TA_PATH}@g" data/gameserverlauncher.ini
+sed -i "s@{{TA_PATH}}@${TA_PATH}@g" data/gameserverlauncher.ini
 log "done"
+
+# Install service
+sudo cp taserver-deploy/config/taserver.service /etc/systemd/system
+sudo sed -i "s/{{USER}}/${USER}/g" /etc/systemd/system/taserver.service
+sudo systemctl enable taserver
+sudo systemctl start taserver

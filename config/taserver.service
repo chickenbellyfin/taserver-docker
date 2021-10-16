@@ -1,0 +1,12 @@
+[Unit]
+Description=taserver
+
+[Service]
+ExecStart=/home/{{USER}}/taserver-deploy/scripts/run_taserver.sh
+WorkingDirectory=/home/{{USER}}/taserver
+Restart=on-failure
+RestartSec=10
+User={{USER}}
+
+[Install]
+WantedBy=multi-user.target
