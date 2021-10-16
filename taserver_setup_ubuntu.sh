@@ -42,14 +42,14 @@ mv "taserver-deploy-$TASERVER_DEPLOY_BRANCH" "taserver-deploy"
 
 # setup taserver
 log "Setting up taserver"
-cd taserver
+pushd taserver
 python3 download_compatible_controller.py
 python3 download_injector.py
 
 # configure gameserverlauncher
 cp ../taserver-deploy/config/gameserverlauncher_ubuntu.ini data/gameserverlauncher.ini
 sed -i "s@{{TA_PATH}}@${TA_PATH}@g" data/gameserverlauncher.ini
-log "done"
+popd
 
 # Install service
 sudo cp taserver-deploy/config/taserver.service /etc/systemd/system
