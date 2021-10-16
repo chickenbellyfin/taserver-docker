@@ -1,6 +1,18 @@
 # taserver-deploy
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
+### Deploy to any Ubuntu server
+```
+$ wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu.sh
+$ chmod +x taserver_setup_ubuntu.sh
+$ ./taserver_setup_ubuntu.sh
+```
+
+Server configs are located in `~/taserver/data/`
+
+taserver is installed as a systemd service, and can be managed with `sudo systemctl [start|stop|restart|status] taserver`. The service will start on boot and restart on failure.
+
+
 ### Deploy To Azure
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fazure%2Fazuredeploy.json)
 
