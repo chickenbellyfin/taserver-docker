@@ -3,9 +3,9 @@ Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
 ### Deploy to any Ubuntu server
 ```
-$ wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu.sh
-$ chmod +x taserver_setup_ubuntu.sh
-$ ./taserver_setup_ubuntu.sh
+wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu.sh
+chmod +x taserver_setup_ubuntu.sh
+./taserver_setup_ubuntu.sh
 ```
 
 Server configs are located in `~/taserver/data/`
@@ -15,11 +15,11 @@ taserver is installed as a systemd service, and can be managed with `sudo system
 #### Install Dodge's Custom Maps
 To install [Dodge's Custom Maps](https://www.dodgesdomain.com/docs/custommaps/trctf-blues), run the following script after installing taserver:
 ```
-$ cd ~
-$ ./taserver-deploy/scripts/setup_custom_maps.sh
+cd ~
+./taserver-deploy/scripts/setup_custom_maps.sh
 
 # Restart taserver to pickup the changes
-$ sudo systemctl restart taserver
+sudo systemctl restart taserver
 ```
 
 
