@@ -14,7 +14,7 @@ winetricks -q vcrun2017 dotnet45
 
 # get TribesAscend
 wget "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.zip"
-unzip -q Tribes.zip
+unzip -q Tribes.zip && rm Tribes.zip
 ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend7777.exe
 ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend7778.exe
 TA_PATH="$(pwd)/Tribes/Binaries/Win32"
@@ -25,12 +25,12 @@ pip install gevent
 
 # get taserver
 wget -O taserver.zip "https://github.com/chickenbellyfin/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
-unzip -q taserver.zip
+unzip -q taserver.zip && rm taserver.zip
 mv "taserver-$TASERVER_RELEASE_TAG" "taserver"
 
 # get taserver-deploy
 wget -O taserver-deploy.zip "https://github.com/chickenbellyfin/taserver-deploy/archive/refs/heads/$TASERVER_DEPLOY_BRANCH.zip"
-unzip -q taserver-deploy.zip
+unzip -q taserver-deploy.zip && rm taserver-deploy.zip
 mv "taserver-deploy-$TASERVER_DEPLOY_BRANCH" "taserver-deploy"
 
 # setup taserver
@@ -45,6 +45,7 @@ popd
 
 # Install service
 sudo cp taserver-deploy/config/taserver.service /etc/systemd/system
+sudo sed -i "s/{{INSTALL_PATH}}/$(pwd)/g"
 sudo sed -i "s/{{USER}}/${USER}/g" /etc/systemd/system/taserver.service
 sudo systemctl enable taserver
 sudo systemctl start taserver

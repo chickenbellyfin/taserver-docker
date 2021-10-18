@@ -12,6 +12,16 @@ Server configs are located in `~/taserver/data/`
 
 taserver is installed as a systemd service, and can be managed with `sudo systemctl [start|stop|restart|status] taserver`. The service will start on boot and restart on failure.
 
+#### Install Dodge's Custom Maps
+To install [Dodge's Custom Maps](https://www.dodgesdomain.com/docs/custommaps/trctf-blues), run the following script after installing taserver:
+```
+$ cd ~
+$ ./taserver-deploy/scripts/setup_custom_maps.sh
+
+# Restart taserver to pickup the changes
+$ sudo systemctl restart taserver
+```
+
 
 ### Deploy To Azure
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fazure%2Fazuredeploy.json)

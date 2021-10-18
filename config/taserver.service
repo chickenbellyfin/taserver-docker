@@ -2,11 +2,13 @@
 Description=taserver
 
 [Service]
-ExecStart=/home/{{USER}}/taserver-deploy/scripts/run_taserver.sh
-WorkingDirectory=/home/{{USER}}/taserver
+Type=simple
+ExecStart={{INSTALL_PATH}}/taserver-deploy/scripts/run_taserver.sh
+WorkingDirectory={{INSTALL_PATH}}/taserver
 Restart=on-failure
 RestartSec=10
 User={{USER}}
+KillSignal=SIGKILL
 
 [Install]
 WantedBy=multi-user.target
