@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-TASERVER_RELEASE_TAG="wine-v0.0.1"
+TASERVER_RELEASE_TAG="wine-v0.0.2"
 TASERVER_DEPLOY_BRANCH="ubuntu"
 
 sudo dpkg --add-architecture i386
