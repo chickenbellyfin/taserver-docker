@@ -45,7 +45,7 @@ popd
 
 # Install service
 sudo cp taserver-deploy/config/taserver.service /etc/systemd/system
-sudo sed -i "s@{{INSTALL_PATH}}@$(pwd)@g"
+sudo sed -i "s@{{INSTALL_PATH}}@$(pwd)@g" /etc/systemd/system/taserver.service
 sudo sed -i "s/{{USER}}/${USER}/g" /etc/systemd/system/taserver.service
 sudo systemctl enable taserver
 sudo systemctl start taserver
