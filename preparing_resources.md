@@ -2,7 +2,7 @@
 These steps are generally **not required** if you just want to deploy taserver using this project. 
 
 
-## dependencies.zip
+## dependencies.zip (Windows only)
 
 Create a directory named `dependencies`
 

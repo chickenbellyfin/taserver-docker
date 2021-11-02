@@ -4,9 +4,10 @@ TASERVER_RELEASE_TAG="wine-v0.0.2"
 TASERVER_DEPLOY_BRANCH="ubuntu"
 
 sudo dpkg --add-architecture i386
-sudo apt update
-sudo apt install -y wine winetricks xvfb
+sudo apt-get update
+sudo apt-get install -y wine winetricks xvfb
 export WINEARCH=win32
+export WINEPREFIX="$(pwd)/.wine"
 # some windows programs expect a display
 Xvfb :1 &
 export DISPLAY=":1"
@@ -20,7 +21,7 @@ ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend7778
 TA_PATH="$(pwd)/Tribes/Binaries/Win32"
 
 # taserver deps
-sudo apt install -y python3 python3-pip
+sudo apt-get install -y python3 python3-pip
 pip install gevent
 
 # get taserver
