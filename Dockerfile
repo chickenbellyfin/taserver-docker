@@ -25,6 +25,7 @@ RUN ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend
 RUN ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend7778.exe
 
 COPY docker/install_taserver.sh install_taserver.sh
+
 RUN ./install_taserver.sh
 COPY config/gameserverlauncher_ubuntu.ini /app/taserver/data/gameserverlauncher.ini
 RUN sed -i "s@{{TA_PATH}}@/app/Tribes/Binaries/Win32@g" /app/taserver/data/gameserverlauncher.ini
