@@ -48,6 +48,60 @@ You will also need to open the following ports in your security group:
 
 Refer to [taserver](https://github.com/Griffon26/taserver) documentation for further details.
 
+## Docker based ubuntu (WIP)
+```
+wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu_docker.sh
+chmod +x taserver_setup_ubuntu_docker.sh
+./taserver_setup_ubuntu_docker.sh
+```
+Make sure to expose all ports you expect to use:
+For 5 servers:
+- 7777-7786 TCP/UDP
+- 9002,9004,9006,9008,9010 TCP
+
+It might be easier to just expose a range
+Open up enough ports for 50 servers, but many ports will be un-used. This is also less secure.
+- 7777-7877 TCP/UDP
+- 9002-9102 TCP
+
+### create a new server
+```
+# start a taserver with port offset 0, game config will be in ./my_server/serverconfig.lua
+$ mkdir my_server && ./start_taserver.sh -d my_server
+
+# start a second server with a different config
+# for more than one server, you must also add -p <port_offset>, where port_offset must be a multiple of 2
+$ mkdir maybe_arena && ./start_taserver.sh -d maybe_arena -p 2
+
+# Start a third server, identical to the first
+# we can re-use the config directory
+$ ./start_taserver -d my_server -p 4
+```
+
+### restart a server
+Restarting a server is useful to pick up new config changes or fix some unknown problem
+
+```
+# containers are named taserver_$CONFIGDIR_$PORTOFFSET
+$ docker restart taserver_my_server_0
+
+# if you want to see a list of running containers
+$ docker ps --format "{{.Names}}"
+```
+
+### restart a previously killed server
+If a previously running server died and you want to re-start it, run the same command again:
+```
+# Start the my_server server again using the existing config
+$ ./start_taserver.sh -d my_server
+```
+
+### kill a running server
+```
+$ docker kill taserver_my_server_0
+```
+
+
 ## Managing a running taserver (windows)
 
 This template installs taserver as a windows service, named `taserver`.
