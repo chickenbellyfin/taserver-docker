@@ -8,8 +8,9 @@ set -ex
 mount_gamesettings=""
 portoffset="0"
 pathname=""
+detach="-d"
 
-while getopts d:p: flag
+while getopts d:p:f flag
 do
   case "$flag" in
     d) 
@@ -22,6 +23,10 @@ do
       ;;
     p)
       portoffset="${OPTARG}"
+      ;;
+    f)
+      # option to not detach
+      detach=""
       ;;
   esac
 done
@@ -37,7 +42,7 @@ let "gameserver2_port = 7778 + $portoffset"
 
 # TODO: investigate `--network host` instead of port mappings
 docker run \
-  --name "taserver${pathname}_${portoffset}" -d --rm \
+  --name "taserver${pathname}_${portoffset}" $detach --rm \
   $mount_gamesettings \
   -p "$control_port:$control_port/tcp" \
   -p "$gameserver1_port:$gameserver1_port/tcp" \

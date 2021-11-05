@@ -3,7 +3,6 @@
 $ DOCKER_BUILDKIT=1 docker build . -t taserver
 ```
 
-
 # Run
 
 It is recommended to run using the wrapper script:
@@ -19,6 +18,20 @@ $ docker run \
     -v "$(pwd)/gamesettings":/gamesettings \
     taserver
 ```
+
+# Test
+To test:
+
+- Start container. `-f` runs it in the foreground
+```
+$./start_taserver.sh -f
+```
+
+2. Start tribes (game client) with `-hostx=ta.kfk4ever.com`
+3. Join the server "My Custom OOTB Server". You should see some logging from the taserver process
+4. Make sure that gameplay (shooting ,etc) work
+5. Make that Server commands work: `/srvlogin test test` should reply with "Login Failed"
+6. `docker kill taserver_0`
 
 # Modifying game settings
 In order to modify/save game settings, you must provide a directory as a volume as follows:

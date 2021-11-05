@@ -10,7 +10,7 @@ mkdir -p "/gamesettings"
 if [ ! -f "/gamesettings/serverconfig.lua" ]
 then
     cp -r taserver/data/gamesettings/ootb/* /gamesettings/
-    chmod a+rw /gamsettings/*
+    chmod a+rw /gamesettings/*
 fi
 
 # TribesAscend.exe won't start without a display
