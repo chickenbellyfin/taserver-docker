@@ -15,7 +15,7 @@ fi
 
 # TribesAscend.exe won't start without a display
 pkill Xvfb || true
-rm /tmp/.X1-lock
+rm /tmp/.X1-lock || true
 Xvfb :1 &> xvfb.out &
 export DISPLAY=":1"
 
