@@ -18,9 +18,11 @@ rm *.deb
 sudo usermod -aG docker $dockeruser
 newgrp docker
 
-# download helper script
+# get taserver image
 docker pull public.ecr.aws/i2q9d4v7/taserver:latest
 docker tag public.ecr.aws/i2q9d4v7/taserver:latest taserver
+
+# download helper script
 wget -O start_taserver.sh "https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/docker/start_taserver.sh"
 chmod +x start_taserver.sh
 ./start_taserver.sh -d gamesettings

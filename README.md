@@ -1,78 +1,64 @@
 # taserver-deploy
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
-
-### Deploy to Azure (Ubuntu)
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fubuntu%2Fazure%2Fazuredeploy_ubuntu.json)
-
-Server configs are located in `~/taserver/data/`
-
-taserver is installed as a systemd service, and can be managed with `sudo systemctl [start|stop|restart|status] taserver`. The service will start on boot and restart on failure.
-
-#### Install Dodge's Custom Maps
-To install [Dodge's Custom Maps](https://www.dodgesdomain.com/docs/custommaps/trctf-blues), run the following script after installing taserver:
-```
-cd ~
-./taserver-deploy/scripts/setup_custom_maps.sh
-
-# Restart taserver to pickup the changes
-sudo systemctl restart taserver
-```
-
-
 ### Deploy To Azure (Windows Server)
+
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fazure%2Fazuredeploy.json)
+See [Windows README](/windows/README.md) for details.
 
-### Deploy to AWS / Other Providers
-You can still deploy cloud providers other than Azure by creating your own EC2 or other VPS instance, and running one of the commands below:
 
-#### Ubuntu
-```
-wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu.sh
-chmod +x taserver_setup_ubuntu.sh
-./taserver_setup_ubuntu.sh
+### DEPRECATED: Non-docker Deploy to Azure (Ubuntu)
+This method of deploying taserver is being deprecated in favor of the docker-based tools.
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fubuntu%2Fazure%2Fazuredeploy_ubuntu.json)
+See [Ubuntu README](/ubuntu/README.md) for details.
 
-```
 
-#### Windows
-```
-> curl.exe -o taserver_setup.ps1 https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/master/taserver_setup.ps1
->  .\taserver_setup.ps1
-```
+## WIP: Docker-based install on Ubuntu
+Installs docker and loads the taserver docker image from this project on an Ubuntu host.
 
-#### Ports (All OSes)
-You will also need to open the following ports in your security group:
-- TCP 7777-7778
-- UDP 7777-7778
-- TCP 9002
-
-Refer to [taserver](https://github.com/Griffon26/taserver) documentation for further details.
-
-## Docker based ubuntu (WIP)
+Create an Ubuntu VM on Azure/AWS/etc, and run the following commands:
 ```
 wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu_docker.sh
 chmod +x taserver_setup_ubuntu_docker.sh
 ./taserver_setup_ubuntu_docker.sh
 ```
-Make sure to expose all ports you expect to use.
 
-For 5 servers:
-- 7777-7786 TCP/UDP
-- 9002,9004,9006,9008,9010 TCP
+For resources, I recommend 2 CPU, 4GB RAM.
 
-It might be easier to just expose a range
+### Ports
+You must open the following ports in your security group and/or firewall:
+- 7777-7778 TCP **and** UDP
+- 9002 TCP
 
-Open up enough ports for 50 servers, but many ports will be un-used. This is also less secure.
-- 7777-7877 TCP/UDP
-- 9002-9102 TCP
+#### Multiple Servers
+If you want to run multiple taservers from your host machine, you must open more ports, depending on how many servers you want to host.
 
-### create a new server
+For each range starting at 7777 and at 9002, open **N * 2** ports counting up
+
+ex. For 5 servers, add 10:
+- 7777-7787 TCP & UDP
+- 9002-9010 TCP
+
+For the 9002- range, only the even ports are used. You may choose to only open the exact ports: 9002,9004,9006,... for extra security.
+
+## Server Management
+The docker image uses a mounted directory to read server settings. You can manage your settings outside of docker and run multiple different (or identical) servers at the same time.
+
+To use pre-existing serverconfigs, create a directory and copy your `serverconfig.lua` into it, as well as any other lua files it depends on (like `admin.lua`).
+
+Refer to [TAMods-Server Docs](https://www.tamods.org/docs/doc_srv_api_overview.html) for details on configuration.
+
+### Start a Server (or multiple)
+The wrapper script makes it easy to run one or more taserver instances.
+
+For more than one server, you must also add `-p <port_offset>`, where port_offset must be a multiple of 2.
+
 ```
 # start a taserver with port offset 0, game config will be in ./my_server/serverconfig.lua
 $ ./start_taserver.sh -d my_server
 
-# start a second server with a different config
-# for more than one server, you must also add -p <port_offset>, where port_offset must be a multiple of 2
+# start a second server with a different config located in ./maybe_arena/
+# 
 $ ./start_taserver.sh -d maybe_arena -p 2
 
 # Start a third server, identical to the first
@@ -83,9 +69,12 @@ $ ./start_taserver -d my_server -p 4
 $ for i in {0..10}; do ./start_taserver.sh -d arena_settings -p $((i*2)) ; done
 ```
 
-### restart a server
-Restarting a server is useful to pick up new config changes or fix some unknown problem
+- If you start a server without specifying the `-d` flag, it will start with the default settings from [taserver](https://github.com/Griffon26/taserver/tree/master/data/gamesettings/ootb) and appear as "My Custom OOTB Server".
 
+- If you start a server with `-d` and the directory does not exist, it will be created and the default `serverconfig.lua` will be copied into it. You can edit that file and restart the server to make changes.
+ 
+### Restart a Server
+Restarting a server is useful to pick up new config changes or fix some unknown problem.
 ```
 # containers are named taserver_$CONFIGDIR_$PORTOFFSET
 $ docker restart taserver_my_server_0
@@ -94,38 +83,14 @@ $ docker restart taserver_my_server_0
 $ docker ps --format "{{.Names}}"
 ```
 
-### restart a previously killed server
-If a previously running server died and you want to re-start it, run the same command again:
+### Start a Previously Killed Server
+If a previously running server died and you want to re-start it, run command you used to start it again:
 ```
 # Start the my_server server again using the existing config
 $ ./start_taserver.sh -d my_server
 ```
 
-### kill a running server
+### kill a Running Server
 ```
 $ docker kill taserver_my_server_0
 ```
-
-
-## Managing a running taserver (windows)
-
-This template installs taserver as a windows service, named `taserver`.
-taserver will start automatically when your VM boots up. If the server crashes, the service will try to automatically restart it.
-
-You can also restart the VM to attempt to recover a crashed server.
-
-Server logs are located in `C:\taserver_data\logs`
-
-### Changing Server Settings (windows)
-The taserver directory will be located at `C:\taserver_deploy\taserver`, and you can edit game settings in `C:\taserver_data\gamesettings\ootb\serverconfig.lua`.
-
-Refer to [taserver](https://github.com/Griffon26/taserver) and [TAMods-Server Docs](https://www.tamods.org/docs/doc_srv_api_overview.html) for details on configuration.
-
-To apply settings changes, restart your VM.
-
-
-## Dependencies
-The server setup script requires several 3rd-party dependencies which are not part of this repository. The Azure template already points to hosted versions of these packages. 
-
-See [Preparing Resources](preparing_resources.md) which details how to assemble those resources if they need to be updated, or hosted elsewhere. 
-

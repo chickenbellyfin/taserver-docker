@@ -40,12 +40,12 @@ python3 download_compatible_controller.py
 python3 download_injector.py
 
 # configure gameserverlauncher
-cp ../taserver-deploy/config/gameserverlauncher_ubuntu.ini data/gameserverlauncher.ini
+cp ../taserver-deploy/ubuntu/gameserverlauncher.ini data/gameserverlauncher.ini
 sed -i "s@{{TA_PATH}}@${TA_PATH}@g" data/gameserverlauncher.ini
 popd
 
 # Install service
-sudo cp taserver-deploy/config/taserver.service /etc/systemd/system
+sudo cp taserver-deploy/ubuntu/taserver.service /etc/systemd/system
 sudo sed -i "s@{{INSTALL_PATH}}@$(pwd)@g" /etc/systemd/system/taserver.service
 sudo sed -i "s/{{USER}}/${USER}/g" /etc/systemd/system/taserver.service
 sudo systemctl enable taserver

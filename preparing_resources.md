@@ -1,8 +1,33 @@
 # Preparing Resources
-These steps are generally **not required** if you just want to deploy taserver using this project. 
+These steps are **not required** if you just want to deploy taserver using this project. If the hosted copies become unavailable at some point in the future, this are the exact steps to re-create them.
+
+## Tribes Ascend
+The Tribes Ascend game files also happen to include the server, which makes self-hosting possible.
+
+Download Tribes Ascend (from steam or another source). Extract it to `Tribes/` (sub dirs should be `Binaries`,`Engine`, `TribesGame`)
+- If you are copying it from steam or your installation used for playing, make a copy.
+
+Create the following directory: `Tribes/Binaries/Redist/directx_Jun2010_redist/`
+
+Run `Tribes/Binaries/Redist/directx_Jun2010_redist.exe` and select `Tribes/Binaries/Redist/directx_Jun2010_redist/` as the output dir.
+
+### Optional Step - Delete large, unused files
+Delete the following files, they are not required by the server and significantly reduce the package size:
+- `Tribes/TribesGame/CookedPC/Textures.tfc`
+- `Tribes/TribesGame/CookedPC/CharTextures.tfc`
+- `Tribes/TribesGame/CookedPC/Lighting.tfc`
+- `Tribes/TribesGame/CookedPC/TribesGameContent.u`
+- `Tribes/Binaries/Redist/directx_Jun2010_redist.exe` (already extracted)
+
+
+### Zip
+Compress `Tribes/` into `Tribes.zip`
 
 
 ## dependencies.zip (Windows only)
+
+This zip contains python, nssm, vc++ 2015, and .NET 3.5, which are all required to run taserver and Tribes Ascend. Packaging them in one zip just makes it convenient to download them in the script.
+
 
 Create a directory named `dependencies`
 
@@ -36,36 +61,14 @@ Extract the zip and copy `win64/nssm.exe` to `dependencies/nssm.exe`
 *Tested with NSSM 2.24*
 
 ### Visual C++ Redistributable for Visual Studio 2015
-Visual C++ is required by Tribes Ascend (x86) and by taserver's udpproxy (x64)
+Visual C++ x86 is required by Tribes Ascend and udpproxy.exe
 
-Download the x86 and x64 versions of vc_redist from [microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
+Download the x86 version of vc_redist from [microsoft](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
 
-Place them in `dependencies/vc_redist.x86.exe` and `dependencies/vc_redist.x64.exe`
+Place it in `dependencies/vc_redist.x86.exe`
 
 ### .NET 3.5 
 You will need an ISO for Windows Server 2019. Mount it and copy the `sources/sxs/` directory to `dependencies/sxs/`
 
-## Tribes Ascend
-The Tribes Ascend game files also happen to include the server, which makes self-hosting possible.
-
-Download Tribes Ascend (from steam or another source). Extract it to `Tribes/` (sub dirs should be `Binaries`,`Engine`, `TribesGame`)
-- If you are copying it from steam or your installation used for playing, make a copy.
-
-Create the following directory: `Tribes/Binaries/Redist/directx_Jun2010_redist/`
-
-Run `Tribes/Binaries/Redist/directx_Jun2010_redist.exe` and select `Tribes/Binaries/Redist/directx_Jun2010_redist/` as the output dir.
-
-### Optional Step - Delete large, unused files
-Delete the following files, they are not required by the server and significantly reduce the package size:
-- `Tribes/TribesGame/CookedPC/Textures.tfc`
-- `Tribes/TribesGame/CookedPC/CharTextures.tfc`
-- `Tribes/TribesGame/CookedPC/Lighting.tfc`
-- `Tribes/TribesGame/CookedPC/TribesGameContent.u`
-- `Tribes/Binaries/Redist/directx_Jun2010_redist.exe` (already extracted)
-
-## Create Zip
-Using any compression tool:
-
+### Zip
 Compress `dependencies/` into `dependencies.zip`
-
-Compress `Tribes/` into `Tribes.zip`

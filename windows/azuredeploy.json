@@ -259,7 +259,7 @@
                 "typeHandlerVersion": "1.9",
                 "settings": {
                     "fileUris": [
-                        "[concat('https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/', variables('taserverDeployBranch'), '/taserver_setup.ps1')]"
+                        "[concat('https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/', variables('taserverDeployBranch'), '/windows/taserver_setup.ps1')]"
                     ]
                 },
                 "protectedSettings": {

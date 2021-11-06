@@ -2,7 +2,7 @@ $python = "dependencies\python\pythonw.exe"
 $data_root = "C:\taserver_data"
 
 # check for TAMods update
-scripts\get_latest_taserver.ps1 . $python
+windows\get_latest_taserver.ps1 . $python
 & $python taserver\download_compatible_controller.py
 
 $firewall = Start-Process $python `

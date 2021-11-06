@@ -55,18 +55,18 @@ Start-Process dependencies\vc_redist.x64.exe "/install","/passive","/norestart" 
 
 # download latest taserver
 log "Fetching latest taserver"
-.\scripts\get_latest_taserver.ps1 $install_dir ".\dependencies\python\python.exe"
+.\windows\get_latest_taserver.ps1 $install_dir ".\dependencies\python\python.exe"
 
 # setup data_root
 Copy-Item ".\taserver\data" -Destination $data_root -Recurse
 # copy launcher config
-Copy-Item "config\gameserverlauncher.ini" -Destination "$data_root\gameserverlauncher.ini"
+Copy-Item "windows\gameserverlauncher.ini" -Destination "$data_root\gameserverlauncher.ini"
 
 log "serverconfig template is \"$serverconfig_template\""
 if ($serverconfig_params -ne "") {
     # create ta server game config
     log "Preparing template using params in \"$serverconfig_params\""
-    .\dependencies\python\python.exe scripts\prepare_serverconfig.py generate $serverconfig_params
+    .\dependencies\python\python.exe windows\prepare_serverconfig.py generate $serverconfig_params
     Copy-Item "serverconfig.lua" -Destination "$data_root\gamesettings\ootb\serverconfig.lua"
 }
 
@@ -75,7 +75,7 @@ log "Setting up taserver service"
 cd $install_dir\dependencies
 .\nssm.exe install taserver powershell.exe
 .\nssm.exe set taserver AppDirectory $install_dir
-.\nssm.exe set taserver AppParameters $install_dir\scripts\run_taserver.ps1
+.\nssm.exe set taserver AppParameters $install_dir\windows\run_taserver.ps1
 .\nssm.exe set taserver DisplayName "TAServer"
 .\nssm.exe set taserver AppThrottle 30000
 .\nssm.exe set taserver AppExit Default Restart

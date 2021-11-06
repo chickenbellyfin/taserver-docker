@@ -185,7 +185,7 @@
         "settings": {},
         "protectedSettings": {
           "commandToExecute": "cp taserver_setup_ubuntu.sh /home/azureuser && cd /home/azureuser && chmod a+rwx taserver_setup_ubuntu.sh && sudo -u azureuser ./taserver_setup_ubuntu.sh",
-          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu.sh"]
+          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/ubuntu/taserver_setup_ubuntu.sh"]
         }
       }
     },
