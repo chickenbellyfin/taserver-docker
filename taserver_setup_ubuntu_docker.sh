@@ -16,7 +16,6 @@ rm *.deb
 
 # setup current user for docker
 sudo usermod -aG docker $dockeruser
-newgrp docker
 
 # get taserver image
 docker pull public.ecr.aws/i2q9d4v7/taserver:latest
