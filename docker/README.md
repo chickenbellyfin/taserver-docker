@@ -1,13 +1,16 @@
-# Build
+# Docker Image
+This is a docker image based on ubuntu which runs taserver using wine.
+
+### Build
 ```
 $ DOCKER_BUILDKIT=1 docker build . -t taserver
 ```
 
-# Run
+### Run
 
 It is recommended to run using the wrapper script:
 ```
-$ ./start_taserver.sh -d gamesettings
+$ taserver.sh -d gamesettings
 ```
 
 To run directly. This is equivalent to the wrapper script above.
@@ -19,12 +22,12 @@ $ docker run \
     taserver
 ```
 
-# Test
+### Test
 To test:
 
 - Start container. `-f` runs it in the foreground
 ```
-$./start_taserver.sh -f
+$ taserver.sh -f
 ```
 
 2. Start tribes (game client) with `-hostx=ta.kfk4ever.com`
@@ -33,7 +36,7 @@ $./start_taserver.sh -f
 5. Make that Server commands work: `/srvlogin test test` should reply with "Login Failed"
 6. `docker kill taserver_0`
 
-# Modifying game settings
+### Modifying game settings
 In order to modify/save game settings, you must provide a directory as a volume as follows:
 ```
 # settings will be saved locally in my_settings/

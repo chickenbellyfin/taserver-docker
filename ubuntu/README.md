@@ -1,6 +1,9 @@
 # Ubuntu (deprecated)
 Installs taserver directly on a host machine running Ubuntu. 
 
+This method of deploying taserver is being deprecated in favor of the docker-based tools.
+
+
 **It is not recommended to run this install script on your personal computer**
 
 _Tested with Ubuntu 20.04_
@@ -27,8 +30,8 @@ chmod +x taserver_setup_ubuntu.sh
 
 ```
 
-#### Ports (All OSes)
-You must also need to open the following ports in your security group and/or firewall:
+#### Ports
+You must also open the following ports in your security group and/or firewall:
 - TCP 7777-7778
 - UDP 7777-7778
 - TCP 9002

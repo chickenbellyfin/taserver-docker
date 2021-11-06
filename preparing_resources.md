@@ -1,7 +1,7 @@
 # Preparing Resources
 These steps are **not required** if you just want to deploy taserver using this project. If the hosted copies become unavailable at some point in the future, this are the exact steps to re-create them.
 
-## Tribes Ascend
+## Tribes.zip  (Tribes Ascend)
 The Tribes Ascend game files also happen to include the server, which makes self-hosting possible.
 
 Download Tribes Ascend (from steam or another source). Extract it to `Tribes/` (sub dirs should be `Binaries`,`Engine`, `TribesGame`)
@@ -20,7 +20,7 @@ Delete the following files, they are not required by the server and significantl
 - `Tribes/Binaries/Redist/directx_Jun2010_redist.exe` (already extracted)
 
 
-### Zip
+### ZIP
 Compress `Tribes/` into `Tribes.zip`
 
 
@@ -70,5 +70,5 @@ Place it in `dependencies/vc_redist.x86.exe`
 ### .NET 3.5 
 You will need an ISO for Windows Server 2019. Mount it and copy the `sources/sxs/` directory to `dependencies/sxs/`
 
-### Zip
+### ZIP
 Compress `dependencies/` into `dependencies.zip`
