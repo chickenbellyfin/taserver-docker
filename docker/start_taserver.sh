@@ -50,4 +50,3 @@ docker run \
   -p "$gameserver2_port:$gameserver2_port/tcp" \
   -p "$gameserver2_port:$gameserver2_port/udp" \
   taserver --port-offset="$portoffset"
-
