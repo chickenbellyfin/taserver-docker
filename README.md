@@ -19,6 +19,8 @@ See [Ubuntu README](/ubuntu/README.md) for details.
 ## WIP: Docker-based install on Ubuntu
 Installs docker and loads the taserver docker image from this project on an Ubuntu host.
 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fdocker%2Fdocker%2Fazuredeploy.json)
+
 Create an Ubuntu VM on Azure/AWS/etc, and run the following commands:
 ```
 wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu_docker.sh
@@ -26,7 +28,21 @@ chmod +x taserver_setup_ubuntu_docker.sh
 ./taserver_setup_ubuntu_docker.sh
 ```
 
-For resources, I recommend 2 CPU, 4GB RAM.
+#### VM Size / Resources
+**TL;DR: 1 CPU / 2GB RAM is enough for 1 full server**
+
+A CPU in this case refers to a single core. taserver will use 15-50% CPU and 800MB-1.2GB RAM based on how full it is. If you would like to run multiple servers on a host, you will need more resources. 
+
+Rule of thumb:
+- add 1 CPU based on how many servers can be **active** (players in them) at any given time.
+- add 1.5GB RAM based on how many total servers you want to make available.
+
+So for:
+- 2 active servers and 8 total, server should be around 2CPU/16GB or 4CPU/16GB
+- 8 total servers, all active (like in a tournament), server should be around 8CPU/16GB 
+
+
+Disk: The image is only ~6GB, and very little data gets stored, so a small disk is fine.
 
 ### Ports
 You must open the following ports in your security group and/or firewall:
