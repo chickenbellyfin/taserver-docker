@@ -183,22 +183,9 @@
         "autoUpgradeMinorVersion": true,
         "settings": {},
         "protectedSettings": {
-          "commandToExecute": "cp taserver_setup_ubuntu_docker.sh /home/azureuser/install.sh && cd /home/azureuser && chmod a+rwx install.sh && sudo -u azureuser ./install.sh",
-          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/docker/taserver_setup_ubuntu_docker.sh"]
+          "commandToExecute": "cp taserver_setup_ubuntu_docker.sh /home/azureuser/install.sh && cd /home/azureuser && chmod a+rwx install.sh && ./install.sh azureuser",
+          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/taserver_setup_ubuntu_docker.sh"]
         }
-      }
-    },
-    {
-      "type": "Microsoft.Network/virtualNetworks/subnets",
-      "apiVersion": "2020-08-01",
-      "name": "[concat(variables('virtualNetworkName'), '/default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
-      ],
-      "properties": {
-        "addressPrefix": "10.0.1.0/24",
-        "privateEndpointNetworkPolicies": "Enabled",
-        "privateLinkServiceNetworkPolicies": "Enabled"
       }
     },
     {
