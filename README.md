@@ -13,6 +13,8 @@ chmod +x taserver_setup_ubuntu_docker.sh
 ./taserver_setup_ubuntu_docker.sh
 ```
 
+_TODO: instructions for other distros_
+
 #### VM Size / Resources
 **TL;DR: 1 CPU / 2GB RAM is enough for 1 full server**
 
