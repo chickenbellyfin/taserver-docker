@@ -1,21 +1,6 @@
 # taserver-deploy
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
-### Deploy To Azure (Windows Server)
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/windows/azuredeploy.json)
-
-See [Windows README](/windows/README.md) for details.
-
-
-### DEPRECATED: Non-docker Deploy to Azure (Ubuntu)
-This method of deploying taserver is being deprecated in favor of the docker-based tools.
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fdocker%2Fubuntu%2Fazuredeploy.json)
-
-See [Ubuntu README](/ubuntu/README.md) for details.
-
-
 ## WIP: Docker-based install on Ubuntu
 Installs docker and loads the taserver docker image from this project on an Ubuntu host.
 
@@ -112,3 +97,16 @@ $ ./start_taserver.sh -d my_server
 ```
 $ docker kill taserver_my_server_0
 ```
+# Other Deployment Methods:
+### Deploy To Azure (Windows Server)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/windows/azuredeploy.json)
+
+See [Windows README](/windows/README.md) for details.
+
+
+### DEPRECATED: Non-docker Deploy to Azure (Ubuntu)
+This method of deploying taserver is being deprecated in favor of the docker-based tools.
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fdocker%2Fubuntu%2Fazuredeploy.json)
+
+See [Ubuntu README](/ubuntu/README.md) for details.
