@@ -42,7 +42,8 @@ let "gameserver2_port = 7778 + $portoffset"
 
 # TODO: investigate `--network host` instead of port mappings
 docker run \
-  --name "taserver${pathname}_${portoffset}" $detach --rm \
+  --name "taserver${pathname}_${portoffset}" \
+  $detach --restart unless-stopped \
   $mount_gamesettings \
   -p "$control_port:$control_port/tcp" \
   -p "$gameserver1_port:$gameserver1_port/tcp" \
