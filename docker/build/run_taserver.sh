@@ -15,8 +15,11 @@ fi
 
 # TribesAscend.exe won't start without a display
 pkill Xvfb || true
-rm /tmp/.X1-lock || true
-Xvfb :1 &> xvfb.out &
+rm -f /tmp/.X1-lock
+# Optional
+# Set the framebuffer size. Seems to save ~40MB of memory
+# it will also work with just `Xvfb :1 &> xvfb.out &`
+Xvfb :1 -screen 0 640x480x8 &> xvfb.out &
 export DISPLAY=":1"
 
 cd taserver

@@ -40,7 +40,6 @@ ENV WINEPREFIX=/app/.wine
 # Install vc++2017 and .NET 4.5 in wine
 COPY build/install_ta_deps.sh install_ta_deps.sh
 RUN ./install_ta_deps.sh
-
 # required by taserver
 RUN pip install gevent
 

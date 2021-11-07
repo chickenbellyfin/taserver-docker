@@ -36,6 +36,12 @@ $ taserver.sh -f
 5. Make that Server commands work: `/srvlogin test test` should reply with "Login Failed"
 6. `docker kill taserver_0`
 
+### Development
+By default, the Dockerfile will pull the latest taserver release from github. If you are testing changes to taserver, make the following changes:
+- make a zip of your taserver dir and copy it to `/docker/taserver.zip` in this repo
+- in `/docker/build/install_taserver.sh`, comment out `wget .. taserver.zip` and `mv .. taserver`
+- add `COPY taserver.zip .` in the Dockerfile right before `COPY build/install_taserver.sh install_taserver.sh`
+
 ### Modifying game settings
 In order to modify/save game settings, you must provide a directory as a volume as follows:
 ```

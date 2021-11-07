@@ -24,7 +24,7 @@ You can also deploy cloud providers such as AWS by creating your own Windows EC2
 ```
 
 #### Ports
-You must also need to open the following ports in your security group / VM firewall:
+You must also open the following ports in your security group / VM firewall:
 - TCP 7777-7778
 - UDP 7777-7778
 - TCP 9002
