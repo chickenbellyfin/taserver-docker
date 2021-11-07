@@ -13,7 +13,7 @@ It is recommended to run using the wrapper script:
 $ taserver.sh -d gamesettings
 ```
 
-To run directly. This is equivalent to the wrapper script above.
+Command to run directly. This is equivalent to the wrapper script above.
 ```
 $ mkdir gamesettings
 $ docker run \
@@ -33,7 +33,7 @@ $ taserver.sh -f
 2. Start tribes (game client) with `-hostx=ta.kfk4ever.com`
 3. Join the server "My Custom OOTB Server". You should see some logging from the taserver process
 4. Make sure that gameplay (shooting ,etc) work
-5. Make that Server commands work: `/srvlogin test test` should reply with "Login Failed"
+5. Make sure that server commands work: `/srvlogin test test` should reply with "Login Failed"
 6. `docker kill taserver_0`
 
 ### Development
