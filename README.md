@@ -6,6 +6,7 @@ Installs docker and loads the taserver docker image from this project on an Ubun
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fdocker%2Fdocker%2Fazuredeploy.json)
 
+#### Non-Azure
 Create an Ubuntu VM on Azure/AWS/etc, and run the following commands:
 ```
 wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu_docker.sh
