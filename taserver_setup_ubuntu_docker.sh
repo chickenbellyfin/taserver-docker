@@ -4,15 +4,9 @@ set -ex
 dockeruser=${1:-$USER}
 
 # Install docker
-wget -O containerd.deb "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/containerd.io_1.4.9-1_amd64.deb"
-wget -O docker-cli.deb "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/docker-ce-cli_20.10.9~3-0~ubuntu-focal_amd64.deb"
-wget -O docker-ce.deb "https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/docker-ce_20.10.9~3-0~ubuntu-focal_amd64.deb"
-
-sudo dpkg -i containerd.deb
-sudo dpkg -i docker-cli.deb
-sudo dpkg -i docker-ce.deb
-
-rm *.deb
+# https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
+curl -L "https://get.docker.com" -o "get-docker.sh"
+sudo sh get-docker.sh && rm get-docker.sh
 
 # setup current user for docker
 sudo usermod -aG docker $dockeruser
