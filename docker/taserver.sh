@@ -3,12 +3,12 @@
 # taserver docker image should be loaded in docker already
 # Usage: start_taserver_container.sh -d gamesettings_dir -p port_offset
 # port offset should differ by at least 2 between all containers
-set -ex
+set -eux
 
 mount_gamesettings=""
 portoffset="0"
 pathname=""
-detach="-d"
+detach_option="-d --restart unless-stopeed"
 
 while getopts d:p:f flag
 do
@@ -25,8 +25,8 @@ do
       portoffset="${OPTARG}"
       ;;
     f)
-      # option to not detach
-      detach=""
+      # if run in foreground, cleanup on stop
+      detach_option="--rm"
       ;;
   esac
 done
@@ -43,7 +43,7 @@ let "gameserver2_port = 7778 + $portoffset"
 # TODO: investigate `--network host` instead of port mappings
 docker run \
   --name "taserver${pathname}_${portoffset}" \
-  $detach --restart unless-stopped \
+  $detach_option \
   $mount_gamesettings \
   -p "$control_port:$control_port/tcp" \
   -p "$gameserver1_port:$gameserver1_port/tcp" \

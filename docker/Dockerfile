@@ -6,8 +6,6 @@ RUN apt-get update && apt-get install -y python3 wget unzip
 
 # Download Tribes Ascend game files
 RUN wget -q "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.zip" && unzip -q Tribes.zip && rm Tribes.zip
-RUN ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend1.exe
-RUN ln Tribes/Binaries/Win32/TribesAscend.exe Tribes/Binaries/Win32/TribesAscend2.exe
 
 # Download & configure taserver
 COPY build/install_taserver.sh install_taserver.sh
@@ -49,3 +47,4 @@ COPY --from=tribes /app/taserver /app/taserver
 
 COPY build/run_taserver.sh .
 ENTRYPOINT ["./run_taserver.sh"]
+EXPOSE 7777/tcp 7777/udp 7778/tcp 7778/udp 9002/tcp
