@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y python3 wget unzip
 # Download Tribes Ascend game files
 RUN wget -q "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.zip" && unzip -q Tribes.zip && rm Tribes.zip
 
+# Install Dodge's maps
+COPY build/setup_custom_maps.sh setup_custom_maps.sh
+RUN  ./setup_custom_maps.sh
+
 # Download & configure taserver
 COPY build/install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh

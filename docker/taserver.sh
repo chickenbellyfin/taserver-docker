@@ -8,7 +8,7 @@ set -eux
 mount_gamesettings=""
 portoffset="0"
 pathname=""
-detach_option="-d --restart unless-stopeed"
+detach_option="-d --restart unless-stopped"
 
 while getopts d:p:f flag
 do
@@ -35,14 +35,18 @@ let "control_port = 9002 + $portoffset"
 let "gameserver1_port = 7777 + $portoffset"
 let "gameserver2_port = 7778 + $portoffset"
 
+container_name="taserver${pathname}_${portoffset}"
 # Container Naming
 #    (no args)                 => taserver_0
 #    -d /path/to/myconfig      => taserver_myconfig_0
 #    -d /path/to/myconfig -p 2 => taserver_myconfig_2
 
+# attempt to remove existing
+docker rm -f "$container_name" || true
+
 # TODO: investigate `--network host` instead of port mappings
 docker run \
-  --name "taserver${pathname}_${portoffset}" \
+  --name "$container_name" \
   $detach_option \
   $mount_gamesettings \
   -p "$control_port:$control_port/tcp" \
