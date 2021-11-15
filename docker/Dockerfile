@@ -1,30 +1,4 @@
 ################################################################################
-### Wine 
-# FROM ubuntu:20:04 as ubuntu_wine
-
-# # disable any interactive prompts during install
-# ENV DEBIAN_FRONTEND=noninteractive 
-# # Install 32-bit wine
-# RUN dpkg --add-architecture i386
-# RUN apt-get update && apt-get install -y wine xvfb
-
-# ENV WINEARCH=win32
-# ENV WINEPREFIX=/app/.wine
-
-################################################################################
-### Tribes dependencies (Visual C++ & .NET install via winetricks) 
-# FROM ubunutu_wine as tribes_deps
-# RUN apt-get update && apt-get install -y winetricks
-# # Install vc++2017 and .NET 4.5 in wine
-# COPY build/install_ta_deps.sh install_ta_deps.sh
-# RUN ./install_ta_deps.sh
-
-# # in final
-# # COPY --from=tribes_deps /app/.wine /app/.wine
-
-
-
-################################################################################
 ### Tribes & taserver
 FROM ubuntu:20.04 as tribes
 WORKDIR /app

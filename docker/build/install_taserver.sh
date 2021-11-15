@@ -3,7 +3,7 @@
 # This script installs Tribes and taserver during docker build
 set -ex
 
-TASERVER_RELEASE_TAG="wine-v0.0.16"
+TASERVER_RELEASE_TAG="wine-v0.0.19"
 
 # get taserver
 wget -q -O taserver.zip "https://github.com/chickenbellyfin/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
