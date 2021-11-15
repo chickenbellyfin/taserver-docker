@@ -1,5 +1,31 @@
+################################################################################
+### Wine 
+# FROM ubuntu:20:04 as ubuntu_wine
 
-### Tribes & taserver ###
+# # disable any interactive prompts during install
+# ENV DEBIAN_FRONTEND=noninteractive 
+# # Install 32-bit wine
+# RUN dpkg --add-architecture i386
+# RUN apt-get update && apt-get install -y wine xvfb
+
+# ENV WINEARCH=win32
+# ENV WINEPREFIX=/app/.wine
+
+################################################################################
+### Tribes dependencies (Visual C++ & .NET install via winetricks) 
+# FROM ubunutu_wine as tribes_deps
+# RUN apt-get update && apt-get install -y winetricks
+# # Install vc++2017 and .NET 4.5 in wine
+# COPY build/install_ta_deps.sh install_ta_deps.sh
+# RUN ./install_ta_deps.sh
+
+# # in final
+# # COPY --from=tribes_deps /app/.wine /app/.wine
+
+
+
+################################################################################
+### Tribes & taserver
 FROM ubuntu:20.04 as tribes
 WORKDIR /app
 RUN apt-get update && apt-get install -y python3 wget unzip
@@ -14,10 +40,13 @@ RUN  ./setup_custom_maps.sh
 # Download & configure taserver
 COPY build/install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh
-COPY build/gameserverlauncher_docker.ini /app/taserver/data/gameserverlauncher.ini
+COPY build/gameserverlauncher.ini /app/taserver/data/gameserverlauncher.ini
+COPY build/shared.ini /app/taserver/data/shared.ini
 
 
-### Wine & final output ###
+
+################################################################################
+### Wine & final output
 FROM ubuntu:20.04
 WORKDIR /app
 
@@ -28,7 +57,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
   python3 \
   python3-pip \
-  xvfb
+  xvfb \
+  iptables
 
 # Install 32-bit wine
 RUN dpkg --add-architecture i386
@@ -43,7 +73,7 @@ ENV WINEPREFIX=/app/.wine
 COPY build/install_ta_deps.sh install_ta_deps.sh
 RUN ./install_ta_deps.sh
 # required by taserver
-RUN pip install gevent
+RUN pip install gevent certifi
 
 # Get Tribes and taserver from previous stage
 COPY --from=tribes /app/Tribes /app/Tribes

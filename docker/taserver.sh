@@ -49,6 +49,7 @@ docker run \
   --name "$container_name" \
   $detach_option \
   $mount_gamesettings \
+  --cap-add NET_ADMIN \
   -p "$control_port:$control_port/tcp" \
   -p "$gameserver1_port:$gameserver1_port/tcp" \
   -p "$gameserver1_port:$gameserver1_port/udp" \

@@ -23,5 +23,7 @@ Xvfb :1 -screen 0 640x480x8 &> xvfb.out &
 export DISPLAY=":1"
 
 cd taserver
+# Start firewall
+python3 start_taserver_firewall.py &
 # Start taserver
 python3 start_game_server_launcher.py $@
