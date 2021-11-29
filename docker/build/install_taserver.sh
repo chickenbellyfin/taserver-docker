@@ -14,6 +14,6 @@ cd taserver
 
 # TODO: uncomment & remove wget call after merging https://github.com/mcoot/tamods-server/pull/1
 #python3 download_compatible_controller.py
-wget -q "https://github.com/chickenbellyfin/tamods-server/releases/download/v0.0.3/TAMods-Server.dll"
+wget -q "https://github.com/chickenbellyfin/tamods-server/releases/download/v0.0.4/TAMods-Server.dll"
 
 python3 download_injector.py
