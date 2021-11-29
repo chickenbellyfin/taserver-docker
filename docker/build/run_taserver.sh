@@ -24,6 +24,6 @@ export DISPLAY=":1"
 
 cd taserver
 # Start firewall
-python3 start_taserver_firewall.py &
+python3 start_taserver_firewall.py $@ &
 # Start taserver
 python3 start_game_server_launcher.py $@
