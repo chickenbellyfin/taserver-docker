@@ -1,15 +1,15 @@
 # taserver-deploy
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
-## WIP: Docker-based install on Ubuntu
+## Docker-based install on Ubuntu
 Installs docker and loads the taserver docker image from this project on an Ubuntu host.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fdocker%2Fdocker%2Fazuredeploy.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fdocker%2Fazuredeploy.json)
 
 #### Non-Azure
 Create an Ubuntu VM on Azure/AWS/etc, and run the following commands:
 ```
-wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/ubuntu/taserver_setup_ubuntu_docker.sh
+wget https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/master/taserver_setup_ubuntu_docker.sh
 chmod +x taserver_setup_ubuntu_docker.sh
 ./taserver_setup_ubuntu_docker.sh
 ```
@@ -23,7 +23,7 @@ A CPU in this case refers to a single core. taserver will use 15-70% CPU and 500
 
 Rule of thumb:
 - add 1 CPU based on how many servers can be **active** (players in them) at any given time.
-- add 1.5GB RAM based on how many total servers you want to make available.
+- add 1GB RAM based on how many total servers you want to make available.
 
 So for example (using common vm sizes):
 - 2 active servers and 6-7 total, server should be around 2CPU/8GB

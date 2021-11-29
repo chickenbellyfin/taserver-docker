@@ -17,6 +17,7 @@ Command to run directly. This is equivalent to the wrapper script above.
 ```
 $ mkdir gamesettings
 $ docker run \
+    --cap-add NET_ADMIN \
     -p 7777:7777 -p 7777:7777/udp -p 7778:7778 -p 7778:7778/udp -p 9002:9002 \
     -v "$(pwd)/gamesettings":/gamesettings \
     taserver

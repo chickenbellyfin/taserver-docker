@@ -199,7 +199,7 @@
         "settings": {},
         "protectedSettings": {
           "commandToExecute": "cp taserver_setup_ubuntu_docker.sh /home/azureuser/install.sh && cd /home/azureuser && chmod a+rwx install.sh && ./install.sh azureuser",
-          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/taserver_setup_ubuntu_docker.sh"]
+          "fileUris": ["https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/master/taserver_setup_ubuntu_docker.sh"]
         }
       }
     },
