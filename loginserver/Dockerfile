@@ -28,4 +28,4 @@ COPY --from=tribes /app/taserver /app/taserver
 
 COPY run_loginserver.sh .
 ENTRYPOINT ["./run_loginserver.sh"]
-EXPOSE 9000/tcp 9002/udp 9080/tcp
+EXPOSE 9000/tcp 9001/udp 9080/tcp
