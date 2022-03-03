@@ -16,6 +16,6 @@ docker pull public.ecr.aws/i2q9d4v7/taserver:latest
 docker tag public.ecr.aws/i2q9d4v7/taserver:latest taserver
 
 # download helper script
-wget -O taserver.sh "https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/master/taserver.sh"
+wget -O taserver.sh "https://raw.githubusercontent.com/chickenbellyfin/taserver-deploy/docker/master/docker/taserver.sh"
 chmod +x taserver.sh
 ./taserver.sh -d gamesettings
