@@ -10,6 +10,8 @@ $ ls MyGameSettings
 LICENSE  README.md  gotylike  serverconfig.lua
 ```
 
+You can now edit your settings local and copy them to the server to update.
+
 ### Copy lua gamesettings folder to server
 ```
 rsync -vr -e "ssh -i ~/path/to/key.pem" MyGameSettings/ azureuser@my-taserver.centralus.cloudapp.azure.com:gamesettings/
