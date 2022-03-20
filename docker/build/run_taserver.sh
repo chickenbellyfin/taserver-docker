@@ -13,6 +13,13 @@ then
     chmod a+rw /gamesettings/*
 fi
 
+# Set loginserver
+if [ ! -z "$LOGINSERVER" ]; then
+    echo "Overriding login server to $LOGINSERVER"
+    sed -i -E s/host\ =\ .+/host\ =\ $LOGINSERVER/g taserver/data/gameserverlauncher.ini
+    cat taserver/data/gameserverlauncher.ini
+fi
+
 # TribesAscend.exe won't start without a display
 pkill Xvfb || true
 rm -f /tmp/.X1-lock
