@@ -5,7 +5,7 @@ set -ex
 
 Xvfb :1 &
 export DISPLAY=":1"
-winetricks -q vcrun2017 dotnet45
+winetricks -q vcrun2017 dotnet48
 
 # Optional
 # Run ngen now so that it doesn't have to run randomly in the container

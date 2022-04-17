@@ -2,7 +2,8 @@
 ### Tribes & taserver
 FROM ubuntu:20.04 as tribes
 WORKDIR /app
-RUN apt-get update && apt-get install -y python3 wget unzip
+RUN apt-get update && apt-get install -y python3 python3-pip wget unzip
+RUN pip install certifi
 
 # Download Tribes Ascend game files
 RUN wget -q "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.zip" && unzip -q Tribes.zip && rm Tribes.zip
