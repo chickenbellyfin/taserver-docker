@@ -1,4 +1,4 @@
-# taserver-deploy
+# taserver-docker
 Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
 
 ## Build
@@ -90,7 +90,7 @@ You can start the server again by re-running the same command (or the script)
 ## Deploy To Azure
 Installs docker and loads the taserver docker image from this project on an Ubuntu VM.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-deploy%2Fmaster%2Fazuredeploy.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fchickenbellyfin%2Ftaserver-docker%2Fmaster%2Fdeploy%2Fazuredeploy.json)
 
 For details about instances sizes and resources required, see [Resources](docs/resources.md)
 
