@@ -1,5 +1,5 @@
 # taserver-docker
-Cloud deployment templates for [taserver](https://github.com/Griffon26/taserver)
+Linux based docker image for [taserver](https://github.com/Griffon26/taserver)
 
 ## Build
 ```
