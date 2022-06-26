@@ -10,7 +10,6 @@ mkdir -p "/gamesettings"
 if [ ! -f "/gamesettings/serverconfig.lua" ]
 then
     cp -r taserver/data/gamesettings/ootb/* /gamesettings/
-    chmod a+rw /gamesettings/*
 fi
 
 # Set loginserver
