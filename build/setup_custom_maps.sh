@@ -7,7 +7,7 @@ function install_tamods_package() {
 
   wget -q -O "$tmp_file" "$1"
   unzip -q "$tmp_file" -d "$tmp_dir"
-  cp -r "$tmp_dir/\!TRIBESDIR/*" "Tribes"
+  cp -r $tmp_dir/\!TRIBESDIR/* "Tribes"
 
   rm "$tmp_file"
   rm -rf "$tmp_dir"

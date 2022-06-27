@@ -13,7 +13,7 @@ detach_option="-d --restart unless-stopped"
 while getopts d:p:f flag
 do
   case "$flag" in
-    d) 
+    d)
       abspath=$(realpath ${OPTARG})
       pathname="_$(basename $abspath)" # used for container name
       # create server config dir if it does not exist
@@ -27,6 +27,8 @@ do
     f)
       # if run in foreground, cleanup on stop
       detach_option="--rm"
+      ;;
+    *)
       ;;
   esac
 done

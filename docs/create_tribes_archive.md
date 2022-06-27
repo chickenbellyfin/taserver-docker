@@ -1,4 +1,4 @@
-# Creating Tribes.tar.zst
+# Creating tribes-server-archive
 
 These steps are **not required** if you just want to deploy taserver using this project.
 If the hosted copies become unavailable at some point in the future, these are the exact steps to re-create them.
@@ -24,4 +24,16 @@ rm Tribes/Binaries/Redist/directx_Jun2010_redist.exe
 The game files are compressed with `zstd` to create the smallest possible download size. The resulting file will be ~1.6GB
 ```
 tar -c Tribes | zstd --ultra -22 -T0 -o Tribes.tar.zst
+```
+
+### Create docker image
+The taserver-docker build copies game files from the tribes-server-archive docker image.
+
+```
+docker build -t chickenbellyfin/tribes-server-archive -f- . <<EOF
+FROM scratch
+COPY Tribes.tar.zst Tribes.tar.zst
+EOF
+
+docker push chickenbellyfin/tribes-server-archive
 ```

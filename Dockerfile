@@ -6,9 +6,8 @@ RUN apt-get update && apt-get install -y python3 python3-pip wget zstd unzip
 RUN pip install certifi
 
 # Download Tribes Ascend game files
-RUN wget -q "https://f000.backblazeb2.com/file/taserver-deploy-packages/Tribes.tar.zst" && \
-  tar -I zstd -xf Tribes.tar.zst && \
-  rm Tribes.tar.zst
+COPY --from=chickenbellyfin/tribes-server-archive Tribes.tar.zst Tribes.tar.zst
+RUN tar -I zstd -xf Tribes.tar.zst && rm Tribes.tar.zst
 
 # Install community maps
 COPY build/setup_custom_maps.sh setup_custom_maps.sh
