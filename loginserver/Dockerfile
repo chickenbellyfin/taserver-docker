@@ -11,11 +11,11 @@ COPY shared.ini /app/taserver/data/shared.ini
 
 ################################################################################
 ### output
-FROM python:3
+FROM python:3-slim
 WORKDIR /app
 
 # disable any interactive prompts during install
-ENV DEBIAN_FRONTEND=noninteractive 
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install iptables for firewall
 RUN apt-get update && apt-get install --no-install-recommends -y iptables

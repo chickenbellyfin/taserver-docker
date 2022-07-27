@@ -13,6 +13,10 @@ RUN tar -I zstd -xf Tribes.tar.zst && rm Tribes.tar.zst
 COPY build/setup_custom_maps.sh setup_custom_maps.sh
 RUN  ./setup_custom_maps.sh
 
+# For taserver development, uncomment this line and run
+# zip -r taserver.zip ../taserver to create taserver.zip
+# COPY taserver.zip taserver.zip
+
 # Download & configure taserver
 COPY build/install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh
