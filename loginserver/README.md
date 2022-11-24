@@ -3,6 +3,8 @@
 ### Build
 ```
 docker build . -t loginserver
+
+docker buildx build --platform linux/arm64,linux/amd64 --tag <registry>/loginserver --push .
 ```
 
 ### Run

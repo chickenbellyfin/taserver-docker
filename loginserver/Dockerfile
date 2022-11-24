@@ -5,6 +5,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y wget unzip
 
 # Download & configure taserver
+
+# For taserver development, uncomment this line and run
+# zip -r taserver.zip ../../taserver to create taserver.zip
+# COPY taserver.zip taserver.zip
+
 COPY install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh
 COPY shared.ini /app/taserver/data/shared.ini
