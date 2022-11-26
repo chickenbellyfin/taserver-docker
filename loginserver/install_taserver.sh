@@ -3,7 +3,7 @@
 # This script installs taserver during docker build
 set -ex
 
-TASERVER_RELEASE_TAG="wine-v0.0.22"
+TASERVER_RELEASE_TAG="0.0.38"
 
 # Get taserver
 if [ ! -f taserver.zip ]; then
