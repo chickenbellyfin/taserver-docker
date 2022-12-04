@@ -3,7 +3,7 @@
 # This script installs Tribes and taserver during docker build
 set -ex
 
-TASERVER_RELEASE_TAG="0.0.38"
+TASERVER_RELEASE_TAG="0.0.40" 
 
 # get taserver
 if [ ! -f taserver.zip ]; then
