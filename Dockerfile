@@ -1,6 +1,9 @@
 ################################################################################
 ### Tribes & taserver
 FROM ubuntu:20.04 as tribes
+ARG TASERVER_RELEASE_TAG
+ARG INCLUDE_CUSTOM_MAPS
+
 WORKDIR /app
 RUN apt-get update && apt-get install -y python3 python3-pip wget zstd unzip
 RUN pip install certifi

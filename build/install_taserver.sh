@@ -3,13 +3,16 @@
 # This script installs Tribes and taserver during docker build
 set -ex
 
-TASERVER_RELEASE_TAG="0.0.40" 
+if [ -z "$TASERVER_RELEASE_TAG" ];
+then
+  TASERVER_RELEASE_TAG="$(curl https://api.github.com/repos/Griffon26/taserver/releases/latest | jq -r '.tag_name')"
+fi
 
 # get taserver
 if [ ! -f taserver.zip ]; then
-  wget -q -O taserver.zip "https://github.com/chickenbellyfin/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
+  wget -q -O taserver.zip "https://github.com/Griffon26/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
   unzip -q taserver.zip
-  mv "taserver-$TASERVER_RELEASE_TAG" "taserver"
+  mv $(ls | grep taserver-*) "taserver"
 else
   unzip -q taserver.zip
 fi
