@@ -5,6 +5,8 @@ set -ex
 REPO="chickenbellyfin/taserver" # repo to push to
 TAG="$(curl https://api.github.com/repos/Griffon26/taserver/releases/latest | jq -r '.tag_name')"
 
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
 # build without custom maps
 docker build . \
   --build-arg TASERVER_RELEASE_TAG="$TAG" \
@@ -23,6 +25,11 @@ echo "Tagged $REPO:latest $REPO:latest-maps"
 
 if [ "$1" == '--publish' ]
 then
+  if [ "$BRANCH" != "master" ]
+  then
+    echo "Must publish from master"
+    exit 1
+  fi 
   docker push "$REPO:$TAG"
   docker push "$REPO:latest"
   docker push "$REPO:$TAG-maps"
