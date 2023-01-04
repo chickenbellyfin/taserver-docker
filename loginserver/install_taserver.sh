@@ -3,11 +3,11 @@
 # This script installs taserver during docker build
 set -ex
 
-TASERVER_RELEASE_TAG="v2.8.0" 
+TASERVER_RELEASE_TAG="0.0.43"
 
 # Get taserver
 if [ ! -f taserver.zip ]; then
-  wget -q -O taserver.zip "https://github.com/Griffon26/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
+  wget -q -O taserver.zip "https://github.com/chickenbellyfin/taserver/archive/refs/tags/$TASERVER_RELEASE_TAG.zip"
   unzip -q taserver.zip
   mv "$(ls | grep taserver-*)" "taserver" 
 else

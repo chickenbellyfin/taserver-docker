@@ -26,7 +26,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y iptables
 
 # required by taserver
-RUN pip install --no-cache-dir gevent certifi
+RUN pip install --no-cache-dir gevent certifi prometheus_client
 
 # Get taserver from previous stage
 COPY --from=tribes /app/taserver /app/taserver
