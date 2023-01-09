@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y wget unzip
 
 COPY install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh
-COPY shared.ini /app/taserver/data/shared.ini
 
 ################################################################################
 ### output

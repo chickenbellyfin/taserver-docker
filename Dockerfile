@@ -24,8 +24,6 @@ RUN  ./setup_custom_maps.sh
 COPY build/install_taserver.sh install_taserver.sh
 RUN ./install_taserver.sh
 COPY build/gameserverlauncher.ini /app/taserver/data/gameserverlauncher.ini
-COPY build/shared.ini /app/taserver/data/shared.ini
-
 
 
 ################################################################################
