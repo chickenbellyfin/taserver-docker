@@ -22,9 +22,10 @@ This command will start a server called "My Custom OOTB Server", which will be a
 ```
 docker run \
   --name "taserver" -d --cap-add NET_ADMIN \
-  -v "$(pwd)/gamesettings:/gamesettings" -p "9002:9002/tcp" \
+  -v "$(pwd)/gamesettings:/gamesettings" \
   -p "7777:7777/tcp" -p "7777:7777/udp" \
   -p "7778:7778/tcp" -p "7778:7778/udp" \
+  -p "9002:9002/tcp" -p "9002:9002/udp" \
   chickenbellyfin/taserver
 ```
 
@@ -32,7 +33,7 @@ docker run \
 You must open the following ports in your security group and/or firewall:
 
 - 7777-7778 TCP and UDP
-- 9002 TCP
+- 9002 TCP **and** UDP
 
 ### Helper script
 There is a helper script in the git repo for this project which will make it easier to launch a game server.
@@ -57,7 +58,8 @@ services:
     volumes:
       - './gamesettings:/gamesettings'
     ports:
-      - '9002:9002'
+      - '9002:9002/udp'
+      - '9002:9002/tcp'
       - '7777:7777/udp'
       - '7777:7777/tcp'
       - '7778:7778/udp'
@@ -97,7 +99,7 @@ For each range starting at 7777 and at 9002, open **N * 2** ports counting up
 
 ex. For 5 servers, add 10:
 - 7777-7787 TCP & UDP
-- 9002-9010 TCP
+- 9002-9010 TCP & UDP
 
 For the 9002- range, only the even ports are used. You may choose to only open the exact ports: 9002,9004,9006,... for extra security.
 

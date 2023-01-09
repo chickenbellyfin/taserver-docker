@@ -10,9 +10,10 @@ docker build . -t taserver
 ```
 docker run \
   --name "taserver" -d --cap-add NET_ADMIN \
-  -v "$(pwd)/gamesettings:/gamesettings" -p "9002:9002/tcp" \
+  -v "$(pwd)/gamesettings:/gamesettings" \
   -p "7777:7777/tcp" -p "7777:7777/udp" \
   -p "7778:7778/tcp" -p "7778:7778/udp" \
+  -p "9002:9002/tcp" -p "9002:9002/udp" \
   taserver
 ```
 
@@ -25,7 +26,7 @@ This project includes a helper script which will run the above command:
 ### Ports
 You must open the following ports in your security group and/or firewall:
 - 7777-7778 TCP **and** UDP
-- 9002 TCP
+- 9002 TCP **and** UDP
 
 ## Configuration
 The gameserver settings will be located in the directory that is mounted to `/gamesettings` (`-v <path>:/gamesettings` if you ran docker and `-d <path>` if you used `taserver.sh`).
@@ -48,7 +49,7 @@ For each range starting at 7777 and at 9002, open **N * 2** ports counting up
 
 ex. For 5 servers, add 10:
 - 7777-7787 TCP & UDP
-- 9002-9010 TCP
+- 9002-9010 TCP & UDP
 
 For the 9002- range, only the even ports are used. You may choose to only open the exact ports: 9002,9004,9006,... for extra security.
 
