@@ -56,7 +56,7 @@ ENV WINEPREFIX=/app/.wine
 COPY build/install_ta_deps.sh install_ta_deps.sh
 RUN ./install_ta_deps.sh && rm install_ta_deps.sh
 # required by taserver
-RUN pip install gevent certifi
+RUN pip install gevent certifi prometheus_client
 
 # Get Tribes and taserver from previous stage
 COPY --from=tribes /app/Tribes /app/Tribes
